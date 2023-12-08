@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Cadastrar Logradouro";
+    @model Logradouro
+}
+
+<h4>Cadastrar Logradouro</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form class="form-signin" asp-controller="CadastrarLogradouro" asp-action="Cadastro" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Endereco" class="control-label"></label>
+                <input asp-for="Endereco" class="form-control" />
+                <span asp-validation-for="Endereco" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cliente.ClienteId" class="control-label"></label>
+                <input asp-for="Cliente.ClienteId" class="form-control" readonly="true" />
+                <span asp-validation-for="Cliente.ClienteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div>&nbsp;</div>
+    <div>
+        <form asp-controller="ConsultarCliente"
+              asp-action="Index" method="post">
+            <input type="hidden"
+                   name="guid" value="@Guid.NewGuid()" />
+            <button type="submit">Clientes Cadastrados</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

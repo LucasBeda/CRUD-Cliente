@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CRUD_Cliente.Models.Logradouro>
+
+@{
+    ViewData["Title"] = "Logradouros Cadastrados";
+}
+
+<h1>Logradouros Cadastrados</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LogradouroId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endereco)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LogradouroId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endereco)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.LogradouroId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.LogradouroId })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <form asp-controller="ConsultarCliente"
+          asp-action="Index" method="post">
+        <input type="hidden"
+               name="guid" value="@Guid.NewGuid()" />
+        <button type="submit">Clientes Cadastrados</button>
+    </form>
+</div>

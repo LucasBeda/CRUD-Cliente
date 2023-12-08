@@ -18,6 +18,21 @@ namespace CRUD_Cliente.Controllers
             _repositorio = repositorio;
         }
 
+        [HttpGet("Buscar/{id}")]
+        public IActionResult Buscar(int id)
+        {
+            try
+            {
+                List<Logradouro> logradouros = _repositorio.ObterLogradouro(id);
+                return Ok(logradouros);
+            }
+            catch (Exception ex)
+            {
+                _log.LogError($"Buscar - Erro: {ex.Message}");
+                throw;
+            }
+        }
+
         [HttpGet("BuscarPorCliente/{idCliente}")]
         public IActionResult BuscarPorCliente(int idCliente)
         {
@@ -28,7 +43,7 @@ namespace CRUD_Cliente.Controllers
             }
             catch (Exception ex)
             {
-                _log.LogError($"RemoverLogradouro - Erro: {ex.Message}");
+                _log.LogError($"BuscarPorCliente - Erro: {ex.Message}");
                 throw;
             }
         }

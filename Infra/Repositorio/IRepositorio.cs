@@ -7,6 +7,7 @@ namespace CRUD_Cliente.Infra.Repositorio
         Task<IEnumerable<Cliente>> ObterAsyncCliente(long id = 0);
         Task<List<Cliente>> ObterAsyncClienteCompleto();
         Cliente ObterCliente(long id);
+        List<Logradouro> ObterLogradouro(long id);
         List<Logradouro> ObterLogradouroPorCliente(long idCliente);
         int CadastrarCliente(Cliente cliente);
         int CadastrarLogradouro(Logradouro endereco);

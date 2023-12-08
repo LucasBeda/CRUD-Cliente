@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CRUD_Cliente.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes Cadastrados";
+}
+
+<h1>Clientes Cadastrados</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClienteId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Logotipo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClienteId)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Logotipo)
+            </td>
+            <td>
+                    @Html.ActionLink("Editar Cliente", "Edit", new { id = item.ClienteId }) |
+                    @Html.ActionLink("Remover Cliente", "Delete", new { id = item.ClienteId }) |
+                    @Html.ActionLink("Cadastrar Logradouro", "CadastrarLogradouro", new { id = item.ClienteId }) |
+                    @Html.ActionLink("Consultar Logradouros", "ConsultarLogradouro", new { id = item.ClienteId })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

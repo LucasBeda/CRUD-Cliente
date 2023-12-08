@@ -16,20 +16,33 @@ namespace CRUD_Cliente.Models
         {
             var erros = new List<string>();
 
-            if (logradouro.Cliente == null || logradouro.Cliente.ClienteId == 0)
-                erros.Add("Campo obrigatório não preenchido: Id do Cliente");
+            //if (logradouro.Cliente == null || logradouro.Cliente.ClienteId == 0)
+            //    erros.Add("Campo obrigatório não preenchido: Id do Cliente");
 
             if (string.IsNullOrEmpty(logradouro.Endereco))
                 erros.Add("Campo obrigatório não preenchido: Endereço");
 
-            if (logradouro.Cliente != null)
+            if (logradouro.LogradouroId > 0)
             {
-                List<Logradouro> logradourosCliente = repo.ObterLogradouroPorCliente(logradouro.Cliente.ClienteId);
+                List<Logradouro> logradourosCliente = repo.ObterLogradouro(logradouro.LogradouroId);
 
                 foreach (var item in logradourosCliente)
                 {
                     if (item.Endereco == logradouro.Endereco)
                         erros.Add("Cliente já possui esse endereço cadastrado");
+                }
+            }
+            else
+            {
+                if (logradouro.Cliente != null)
+                {
+                    List<Logradouro> logradourosCliente = repo.ObterLogradouroPorCliente(logradouro.Cliente.ClienteId);
+
+                    foreach (var item in logradourosCliente)
+                    {
+                        if (item.Endereco == logradouro.Endereco)
+                            erros.Add("Cliente já possui esse endereço cadastrado");
+                    }
                 }
             }
 

@@ -81,6 +81,19 @@ namespace CRUD_Cliente.Infra.Repositorio
             return cliente;
         }
 
+        public List<Logradouro> ObterLogradouro(long id)
+        {
+            string sql = "SELECT LogradouroId, Endereco, ClienteId FROM Logradouro WHERE LogradouroId = @id";
+
+            List<Logradouro> logradouros = _dbConnection.Query<Logradouro>(sql,
+                                                             new
+                                                             {
+                                                                 id = id
+                                                             }).ToList();
+
+            return logradouros;
+        }
+
         public List<Logradouro> ObterLogradouroPorCliente(long idCliente)
         {
             string sql = "SELECT LogradouroId, Endereco, ClienteId FROM Logradouro WHERE ClienteId = @id";

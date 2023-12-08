@@ -23,7 +23,7 @@ builder.Services.AddSwaggerGen(c =>
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
         Description = "JWT Authorization Header - utilizado com Bearer Authentication.\r\n\r\n" +
-                      "Digite 'Bearer' [espaço] e então seu token no campo abaixo.\r\n\r\n" +
+                      "Digite 'Bearer' [espaï¿½o] e entï¿½o seu token no campo abaixo.\r\n\r\n" +
                       "Exemplo (informar sem as aspas): 'Bearer 12345abcdef'",
     });
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -97,6 +97,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
